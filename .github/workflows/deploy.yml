@@ -30,6 +30,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check before deploying
+        run: |
+          python3 scripts/check.py
+          cp site/Code.gs "$RUNNER_TEMP/Code.js" && node --check "$RUNNER_TEMP/Code.js"
       - name: Build inline figures
         run: python3 scripts/build_figures.py
       - name: Write clasp credentials

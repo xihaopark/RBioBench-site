@@ -9,9 +9,9 @@ Source for the RBioBench task review website and its Colab notebooks.
 
 | To change | Edit | Goes live |
 |---|---|---|
-| Page layout, text, styles, front-end behavior | `site/Index.html` | Auto-deploy after merge to `main` (~1 min) |
-| Server logic (sign-in, feedback, task loading) | `site/Code.gs` | Auto-deploy after merge to `main` |
-| Figures on the home page | Replace a PNG in `figures/` | Auto-deploy after merge to `main` |
+| Page layout, text, styles, front-end behavior | `site/Index.html` | Auto-deploy after push to `main` (~1 min) |
+| Server logic (sign-in, feedback, task loading) | `site/Code.gs` | Auto-deploy after push to `main` |
+| Figures on the home page | Replace a PNG in `figures/` | Auto-deploy after push to `main` |
 | Task content shown on the site (prompt, inputs, reference solution) | `data/tasks.json` | No deploy needed; the site reads it from GitHub (allow a few minutes for GitHub's cache) |
 | A Colab notebook | `notebooks/RBioBench_<TASK>.ipynb` | Immediately; the site opens notebooks straight from GitHub |
 | Data, reference outputs or evaluator used by the notebooks | `colab/practice_pack/` | Immediately; each notebook's Setup cell downloads the pack from `main` |
@@ -28,7 +28,7 @@ The site is a Google Apps Script web app. On every push to `main` that touches `
 2. runs `clasp push` to upload `site/` to the Apps Script project,
 3. updates the existing web-app deployment, so the URL never changes.
 
-It authenticates with the maintainer's clasp credentials, stored as the repository secret `CLASPRC_JSON`. You can also re-run it from the **Actions** tab (**Deploy site → Run workflow**).
+The deploy runs `scripts/check.py` and a syntax check of `Code.gs` first and stops if either fails. It authenticates with the maintainer's clasp credentials, stored as the repository secret `CLASPRC_JSON`. You can also re-run it from the **Actions** tab (**Deploy site → Run workflow**).
 
 ## Previewing changes
 
