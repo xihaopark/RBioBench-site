@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "CLIN_0052",
+  "task_id": "pharmaverse/admiral/derive_var_pchg",
+  "track": "clinical",
+  "track_label": "Clinical Study",
+  "package": "admiral",
+  "level": "L1",
+  "prompt": "Write an R script for an R package task: perform derive var pchg using the admiral package. You may use functions from the admiral package or an output-equivalent implementation.\n\nInput: dataset.tsv\nOutput: result.csv\n\n\nRequired columns for result.csv: USUBJID, PARAMCD, AVISIT, AVAL, BASE, PCHG\nRead input files from inputs/ using relative paths. Write only the required output file(s) under outputs/. Create outputs/ if needed. Do not write alternative filenames.\n\n## Input preview\n\n### dataset.tsv\nUSUBJID\tPARAMCD\tAVISIT\tAVAL\tBASE\n01\tALT\tWeek 1\t12\t10\n01\tALT\tWeek 2\t15\t10\n02\tALT\tWeek 1\t18\t20\n03\tALT\tWeek 1\t5\t0\n",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/result.csv"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "recovered_oracle",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "dataset.tsv"
+      ],
+      "gt_outputs": [
+        "result.csv"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "result.csv"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "ff3325df3c84154227ba449c0d27beda0e1be6ccd792c50964788171688a4183"
+  }
+}

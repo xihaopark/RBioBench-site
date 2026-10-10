@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Sanity checks run on every PR: the site breaks if any of these fail."""
+import csv
 import json
 import sys
 from pathlib import Path
@@ -16,6 +17,10 @@ except Exception as exc:  # noqa: BLE001
 if not isinstance(tasks, list) or not tasks:
     sys.exit("data/tasks.json must be a non-empty list of tasks")
 
+PACK = ROOT / "colab" / "practice_pack"
+with (PACK / "TASK_INDEX.csv").open(newline="", encoding="utf-8") as handle:
+    pack_tasks = {row["public_id"]: row for row in csv.DictReader(handle)}
+
 seen = set()
 for i, task in enumerate(tasks):
     missing = [f for f in REQUIRED_FIELDS if f not in task]
@@ -27,6 +32,12 @@ for i, task in enumerate(tasks):
     seen.add(pid)
     if task.get("online_runnable") and not (ROOT / "notebooks" / f"RBioBench_{pid}.ipynb").exists():
         errors.append(f"{pid} is online_runnable but notebooks/RBioBench_{pid}.ipynb is missing")
+    if task.get("online_runnable"):
+        row = pack_tasks.get(pid)
+        if not row:
+            errors.append(f"{pid} is online_runnable but missing from colab/practice_pack/TASK_INDEX.csv")
+        elif not (PACK / row["relative_path"] / "cases" / "seed_1000" / "inputs").is_dir():
+            errors.append(f"{pid}: colab/practice_pack/{row['relative_path']}/cases/seed_1000/inputs is missing")
 
 for path in sorted((ROOT / "notebooks").glob("*.ipynb")):
     try:

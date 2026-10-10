@@ -1,0 +1,5 @@
+"USUBJID","PARAMCD","AVISIT","AVAL","BASE","PCHG"
+1,"ALT","Week 1",12,10,20
+1,"ALT","Week 2",15,10,50
+2,"ALT","Week 1",18,20,-10
+3,"ALT","Week 1",5,0,NA

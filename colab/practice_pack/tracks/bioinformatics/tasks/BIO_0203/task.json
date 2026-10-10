@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "BIO_0203",
+  "task_id": "transpror/S116_real_data_diff_expr",
+  "track": "bioinformatics",
+  "track_label": "Bioinformatics",
+  "package": "transpror",
+  "level": "L1",
+  "prompt": "Load 'protein_expression.tsv' from the 'inputs' directory. Filter the expression matrix to keep only rows (proteins) that have no missing values (NA). Save this filtered expression matrix to 'outputs/filtered_expression.csv' as a CSV file. Return the filtered expression matrix.",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/filtered_expression.csv"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "case_01_seed_1000",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "protein_expression.tsv"
+      ],
+      "gt_outputs": [
+        "filtered_expression.csv"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "filtered_expression.csv"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "15546c6c2371dfdef43add2930a101c231619fef45a0a88e4f74027793185c9d"
+  }
+}

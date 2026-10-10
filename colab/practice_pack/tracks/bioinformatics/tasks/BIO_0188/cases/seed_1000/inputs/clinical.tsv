@@ -1,0 +1,9 @@
+barcode	vital_status	days_to_death	days_to_last_follow_up	gender
+S01	Alive		969	male
+S02	Dead	150	810	female
+S03	Alive		297	male
+S04	Dead	513	611	female
+S05	Dead	509	488	male
+S06	Dead	372	1324	female
+S07	Dead	528	1340	male
+S08	Dead	1588	630	female

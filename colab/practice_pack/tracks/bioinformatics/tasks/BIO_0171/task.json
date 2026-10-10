@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "BIO_0171",
+  "task_id": "tcga/001_normalize_cpm",
+  "track": "bioinformatics",
+  "track_label": "Bioinformatics",
+  "package": "tcga",
+  "level": "L1",
+  "prompt": "Write R code to normalize RNA-seq count data to CPM (Counts Per Million) using base R. Read the raw count matrix from inputs/counts.tsv with genes as rows and samples as columns, compute each sample's library size, and then compute CPM for each gene as 1e6 * count / library_size. Save the resulting CPM-normalized expression matrix as outputs/cpm.csv, preserving gene row names. As a basic quality check, ensure the file is created and each sample's CPM column sums to roughly one million.",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/cpm.csv"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "case_01_seed_1000",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "counts.tsv",
+        "expression.tsv"
+      ],
+      "gt_outputs": [
+        "cpm.csv"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "cpm.csv"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "4828d8394bb42a5e822c2944ce87ba12d16a71c7390fec9c3dada77be186b90f"
+  }
+}

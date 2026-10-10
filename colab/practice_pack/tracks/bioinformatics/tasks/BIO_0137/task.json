@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "BIO_0137",
+  "task_id": "omnipath/001_network_stats",
+  "track": "bioinformatics",
+  "track_label": "Bioinformatics",
+  "package": "omnipath",
+  "level": "L1",
+  "prompt": "Read the gene-by-sample count matrix from `inputs/counts.tsv`, compute `log2(count + 1)`, and calculate the gene-gene Pearson correlation matrix. Define undirected associations by absolute correlation greater than 0.7, excluding self-links. For each gene, report its number of associations and its mean absolute correlation across the full correlation row as columns `gene`, `degree`, and `mean_correlation` in `outputs/ppi_stats.csv`.",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/ppi_stats.csv"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "case_01_seed_1000",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "counts.tsv",
+        "expression.tsv"
+      ],
+      "gt_outputs": [
+        "ppi_stats.csv"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "ppi_stats.csv"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "950d26936c808f444adf97b796987f628747d153256c13d0d2044f8363c50412"
+  }
+}

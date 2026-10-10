@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "CLIN_0010",
+  "task_id": "pharmaverse/admiral/compute_duration",
+  "track": "clinical",
+  "input_root": "inputs",
+  "output_root": "outputs",
+  "case": {
+    "case_id": "seed_1000",
+    "source_case_id": "recovered_oracle",
+    "seed": 1000,
+    "inputs": [
+      "add_one.tsv",
+      "end_date.tsv",
+      "out_unit.tsv",
+      "start_date.tsv"
+    ]
+  },
+  "expected_artifacts": [
+    "outputs/result.csv"
+  ],
+  "reference_outputs_public": true,
+  "case_manifest": "cases/seed_1000/case.json",
+  "ground_truth_root": "cases/seed_1000/gt_outputs"
+}

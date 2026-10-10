@@ -14,10 +14,11 @@ Source for the RBioBench task review website and its Colab notebooks.
 | Figures on the home page | Replace a PNG in `figures/` | Auto-deploy after merge to `main` |
 | Task content shown on the site (prompt, inputs, reference solution) | `data/tasks.json` | No deploy needed; the site reads it from GitHub (allow a few minutes for GitHub's cache) |
 | A Colab notebook | `notebooks/RBioBench_<TASK>.ipynb` | Immediately; the site opens notebooks straight from GitHub |
+| Data, reference outputs or evaluator used by the notebooks | `colab/practice_pack/` | Immediately; each notebook's Setup cell downloads the pack from `main` |
 
-To make a task runnable in Colab, add its notebook to `notebooks/` and set `"online_runnable": true` for that task in `data/tasks.json`.
+To make a task runnable in Colab: add its files under `colab/practice_pack/tracks/...` and a row to `colab/practice_pack/TASK_INDEX.csv`, add its notebook to `notebooks/`, and set `"online_runnable": true` for that task in `data/tasks.json`.
 
-Every PR runs `scripts/check.py` (task catalog and notebooks parse, every runnable task has a notebook) and a syntax check of `Code.gs`. Run `python3 scripts/check.py` locally before opening a PR.
+Every PR runs `scripts/check.py` (task catalog and notebooks parse; every runnable task has a notebook and practice-pack data), `scripts/smoke_test_pack.py` (each runnable task's reference outputs pass the Colab evaluator), and a syntax check of `Code.gs`. Run them locally before opening a PR; the smoke test needs `numpy` and `pandas`.
 
 ## How deployment works
 

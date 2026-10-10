@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "BIO_0171",
+  "task_id": "tcga/001_normalize_cpm",
+  "track": "bioinformatics",
+  "input_root": "inputs",
+  "output_root": "outputs",
+  "case": {
+    "case_id": "seed_1000",
+    "source_case_id": "case_01_seed_1000",
+    "seed": 1000,
+    "inputs": [
+      "counts.tsv",
+      "expression.tsv"
+    ]
+  },
+  "expected_artifacts": [
+    "outputs/cpm.csv"
+  ],
+  "reference_outputs_public": true,
+  "case_manifest": "cases/seed_1000/case.json",
+  "ground_truth_root": "cases/seed_1000/gt_outputs"
+}

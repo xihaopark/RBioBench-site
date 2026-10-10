@@ -1,0 +1,22 @@
+{
+  "artifact": "rbiobench_colab_practice_v1",
+  "benchmark_release": "v1.1.0",
+  "source_commit": "10ae73e9ad8f7a3bd936d304f60880af2a79c87b",
+  "published_seed": 1000,
+  "browser_task_count": 405,
+  "online_runnable_task_count": 10,
+  "online_runnable_ids": [
+    "CLIN_0010",
+    "CLIN_0016",
+    "CLIN_0038",
+    "CLIN_0043",
+    "CLIN_0052",
+    "BIO_0054",
+    "BIO_0137",
+    "BIO_0171",
+    "BIO_0188",
+    "BIO_0203"
+  ],
+  "reference_solutions_included": false,
+  "score_scope": "public practice only; not an official hidden-test score"
+}

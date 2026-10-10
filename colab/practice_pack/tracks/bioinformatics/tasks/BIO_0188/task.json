@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "BIO_0188",
+  "task_id": "tcga/S091_gene_correlation",
+  "track": "bioinformatics",
+  "track_label": "Bioinformatics",
+  "package": "tcga",
+  "level": "L1",
+  "prompt": "Load 'counts.tsv' from the 'inputs' directory. Calculate the Spearman correlation coefficient between the expression profiles of the first two genes (first two rows) across all samples. Save the single numeric correlation value to 'outputs/correlation.txt'. Return the correlation value.",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/correlation.txt"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "case_01_seed_1000",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "clinical.tsv",
+        "counts.tsv"
+      ],
+      "gt_outputs": [
+        "correlation.txt"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "correlation.txt"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "5fbd36b9065a915279f7c318793f571049265dfdd841c8fffc974b4d7cfd4269"
+  }
+}

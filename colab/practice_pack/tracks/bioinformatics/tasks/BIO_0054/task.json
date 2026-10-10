@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "BIO_0054",
+  "task_id": "genefilter/GF111_row_medians",
+  "track": "bioinformatics",
+  "track_label": "Bioinformatics",
+  "package": "genefilter",
+  "level": "L1",
+  "prompt": "Write R code to compute row-wise median expression and related dispersion metrics using genefilter and matrixStats helper functions. You are working with a gene expression count matrix stored as a tab-separated file at inputs/counts.tsv, where rows are genes and columns are samples. Load both genefilter and matrixStats with library(genefilter); library(matrixStats). Use matrixStats::rowMedians to compute the median expression per gene, genefilter::rowIQRs for the IQR, and matrixStats::rowMads (or an equivalent MAD implementation) for dispersion. For each gene, calculate these three metrics and organize them into a data frame with columns: gene, median_expression, mad_expression, and iqr. Save this summary table to outputs/row_medians.csv. Rely only on genefilter and matrixStats (plus base R) rather than adding other toolkits. As a basic quality check, confirm that the output file is created, review a few rows to ensure the median, MAD, and IQR values are biologically reasonable, and check for any unexpected NA values.",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/row_medians.csv"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "case_01_seed_1000",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "counts.tsv",
+        "expression.tsv"
+      ],
+      "gt_outputs": [
+        "row_medians.csv"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "row_medians.csv"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "c2907c3472e5a3e7caf281074b69db3ce775694ccf7662fdcad87c16ef5032df"
+  }
+}

@@ -1,0 +1,11 @@
+public_id,task_id,track,package,level,seed,case_count,relative_path
+CLIN_0010,pharmaverse/admiral/compute_duration,clinical,admiral,L3,1000,1,tracks/clinical/tasks/CLIN_0010
+CLIN_0016,pharmaverse/admiral/compute_qual_imputation_dec,clinical,admiral,L1,1000,1,tracks/clinical/tasks/CLIN_0016
+CLIN_0038,pharmaverse/admiral/create_period_dataset,clinical,admiral,L3,1000,1,tracks/clinical/tasks/CLIN_0038
+CLIN_0043,pharmaverse/admiral/derive_param_bmi,clinical,admiral,L2,1000,1,tracks/clinical/tasks/CLIN_0043
+CLIN_0052,pharmaverse/admiral/derive_var_pchg,clinical,admiral,L1,1000,1,tracks/clinical/tasks/CLIN_0052
+BIO_0054,genefilter/GF111_row_medians,bioinformatics,genefilter,L1,1000,1,tracks/bioinformatics/tasks/BIO_0054
+BIO_0137,omnipath/001_network_stats,bioinformatics,omnipath,L1,1000,1,tracks/bioinformatics/tasks/BIO_0137
+BIO_0171,tcga/001_normalize_cpm,bioinformatics,tcga,L1,1000,1,tracks/bioinformatics/tasks/BIO_0171
+BIO_0188,tcga/S091_gene_correlation,bioinformatics,tcga,L1,1000,1,tracks/bioinformatics/tasks/BIO_0188
+BIO_0203,transpror/S116_real_data_diff_expr,bioinformatics,transpror,L1,1000,1,tracks/bioinformatics/tasks/BIO_0203

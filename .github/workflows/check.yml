@@ -16,8 +16,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Validate task catalog and notebooks
-        run: python3 scripts/check.py
+        run: python scripts/check.py
+      - name: Smoke-test Colab practice pack
+        run: |
+          pip install numpy==2.2.6 pandas==2.3.3
+          python scripts/smoke_test_pack.py
       - name: Syntax-check Apps Script
         run: cp site/Code.gs "$RUNNER_TEMP/Code.js" && node --check "$RUNNER_TEMP/Code.js"
       - name: Build figures

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "rbiobench_v1_405_seed1000",
+  "public_id": "CLIN_0038",
+  "task_id": "pharmaverse/admiral/create_period_dataset",
+  "track": "clinical",
+  "track_label": "Clinical Study",
+  "package": "admiral",
+  "level": "L3",
+  "prompt": "Write an R script for an R package task: perform create period dataset using the admiral package. You may use functions from the admiral package or an output-equivalent implementation.\n\nInput: periods.tsv\nOutput: result.csv\n\n\nRequired columns for result.csv: USUBJID, APERIOD, APERSDT, APEREDT\nRead input files from inputs/ using relative paths. Write only the required output file(s) under outputs/. Create outputs/ if needed. Do not write alternative filenames.\n\n## Input preview\n\n### periods.tsv\nUSUBJID\tAPERIOD\tAPERSDT\tAPEREDT\n01\t1\t2020-01-01\t2020-01-31\n01\t2\t2020-02-01\t2020-02-28\n02\t1\t2020-01-05\t2020-01-20\n",
+  "required_packages": [],
+  "expected_artifacts": [
+    "outputs/result.csv"
+  ],
+  "cases": [
+    {
+      "case_id": "seed_1000",
+      "source_case_id": "recovered_oracle",
+      "seed": 1000,
+      "case_manifest": "cases/seed_1000/case.json",
+      "inputs": [
+        "periods.tsv"
+      ],
+      "gt_outputs": [
+        "result.csv"
+      ]
+    }
+  ],
+  "scoring_mode_id": "strict",
+  "strict_order": false,
+  "ground_truth": {
+    "published": true,
+    "path": "cases/seed_1000/gt_outputs",
+    "artifacts": [
+      "result.csv"
+    ]
+  },
+  "reference_solution": {
+    "published": true,
+    "language": "R",
+    "path": "solution.R",
+    "sha256": "046f7c925ef8bef5ea52b3eb35f437fbbf5e4eeffa43fa8f85edf4562d10c69c"
+  }
+}
