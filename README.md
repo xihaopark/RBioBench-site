@@ -17,6 +17,8 @@ Source for the RBioBench task review website and its Colab notebooks.
 
 To make a task runnable in Colab, add its notebook to `notebooks/` and set `"online_runnable": true` for that task in `data/tasks.json`.
 
+Every PR runs `scripts/check.py` (task catalog and notebooks parse, every runnable task has a notebook) and a syntax check of `Code.gs`. Run `python3 scripts/check.py` locally before opening a PR.
+
 ## How deployment works
 
 The site is a Google Apps Script web app. On every push to `main` that touches `site/`, `figures/`, or the workflow, `.github/workflows/deploy.yml`:

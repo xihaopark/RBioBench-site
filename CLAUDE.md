@@ -2,6 +2,7 @@
 
 This repo is the RBioBench review website (Google Apps Script) plus its Colab notebooks. Read `README.md` first for what each folder does and how changes go live.
 
+- Run `python3 scripts/check.py` before opening a PR; CI runs the same check.
 - Never run `clasp push` or `clasp deploy` locally. Deployment happens only through GitHub Actions after a change merges to `main`.
 - Work on a branch and open a PR to `main`; do not push to `main` directly.
 - `site/Code.gs` runs on Google's V8 Apps Script runtime: no `require`/`import`, no npm packages. Use the Apps Script services (`SpreadsheetApp`, `UrlFetchApp`, `MailApp`, ...).
