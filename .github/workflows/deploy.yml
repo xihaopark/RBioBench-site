@@ -1,0 +1,53 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "figures/**"
+      - "scripts/build_figures.py"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  # Existing web-app deployment; redeploying it keeps the public /exec URL unchanged.
+  DEPLOYMENT_ID: AKfycbzXe76o0xg_jTNJ978TC6NtQGO5mKjhNk6p4l_Xr-hfvQVjmcPifB5NWqpEkm4oCx-N
+  CLASP: npx -y @google/clasp@3.4.1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build inline figures
+        run: python3 scripts/build_figures.py
+      - name: Write clasp credentials
+        env:
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+        run: |
+          if [ -z "$CLASPRC_JSON" ]; then
+            echo "::error::Repository secret CLASPRC_JSON is not set."
+            exit 1
+          fi
+          printf '%s' "$CLASPRC_JSON" > "$HOME/.clasprc.json"
+          chmod 600 "$HOME/.clasprc.json"
+      - name: Push to Apps Script
+        working-directory: site
+        run: $CLASP push --force
+      - name: Update web-app deployment
+        working-directory: site
+        run: $CLASP deploy --deploymentId "$DEPLOYMENT_ID" --description "GitHub ${GITHUB_SHA::7}"
+      - name: Remove credentials
+        if: always()
+        run: rm -f "$HOME/.clasprc.json"

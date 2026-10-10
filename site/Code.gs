@@ -1,4 +1,7 @@
-const TASK_CATALOG_URL = 'https://drive.usercontent.google.com/download?id=1eBGbtPN-PsTfkRMqiby1vI8feR4lWx06&export=download';
+// Task catalog and notebooks are served from the GitHub repo, so edits there go live without a redeploy.
+const GITHUB_REPO = 'xihaopark/RBioBench-site';
+const TASK_CATALOG_URL = 'https://raw.githubusercontent.com/' + GITHUB_REPO + '/main/data/tasks.json';
+const COLAB_NOTEBOOK_BASE = 'https://colab.research.google.com/github/' + GITHUB_REPO + '/blob/main/notebooks/';
 const FEEDBACK_SHEET_ID = '183OcCpFku-LpbmS7UCQi8TNZw1p9r7olYFQ16PJABa8';
 const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzXe76o0xg_jTNJ978TC6NtQGO5mKjhNk6p4l_Xr-hfvQVjmcPifB5NWqpEkm4oCx-N/exec';
 const SESSION_DAYS = 90;
@@ -8,18 +11,6 @@ const COL = Object.freeze({ created: 1, taskId: 2, track: 3, packageName: 4, nam
 const FEEDBACK_HEADER = ['Timestamp', 'Task', 'Track', 'Package', 'Reviewer', 'Email', 'Feedback type', 'Comments', 'Review ID', 'Last updated', 'Revision'];
 const HISTORY_HEADER = ['Archived at', 'Review ID', 'Revision', 'Task', 'Email', 'Feedback type', 'Comments', 'Saved at'];
 const ALLOWED_TYPES = ['looks_good', 'needs_change', 'technical_issue'];
-const COLAB_URLS = Object.freeze({
-  CLIN_0010: 'https://colab.research.google.com/drive/1bgqyCGm6jUmsrRuVOmvwJHyvWkYI_TpV',
-  CLIN_0016: 'https://colab.research.google.com/drive/1NyoR3LcOooPFiYbEraP7ilqXfKM8M__s',
-  CLIN_0038: 'https://colab.research.google.com/drive/1vJSUzcs-BK0G__XfOc_W7vHbEJcr-iw9',
-  CLIN_0043: 'https://colab.research.google.com/drive/1wIMGb0iTWnd6R6905OH32QFZVwPitdF2',
-  CLIN_0052: 'https://colab.research.google.com/drive/1uuezYs7O72rA5NEhMuWZP0OjqTwfQnj6',
-  BIO_0054: 'https://colab.research.google.com/drive/1UwOHZihOMri0NiRvgY7CXZTppZWFeG57',
-  BIO_0137: 'https://colab.research.google.com/drive/152xCrESaOr2OzGB6oZwm0rWinz_zgI3V',
-  BIO_0171: 'https://colab.research.google.com/drive/1VneElV_aMZ7v_jVjSA4q4E-o9pq29KIq',
-  BIO_0188: 'https://colab.research.google.com/drive/1CJmk7GjWif2K0hPhirV90D9Avib2Wqo8',
-  BIO_0203: 'https://colab.research.google.com/drive/1Q3cg_J4DjgioPPiAGP_ZORxePeaSHdpG',
-});
 
 function doGet(e) {
   const template = HtmlService.createTemplateFromFile('Index');
@@ -40,7 +31,8 @@ function getAppData() {
   }
   const raw = response.getContentText();
   const tasks = JSON.parse(raw).map(task => Object.assign({}, task, {
-    colab_url: COLAB_URLS[task.public_id] || '',
+    // A task marked online_runnable must have notebooks/RBioBench_<public_id>.ipynb in the repo.
+    colab_url: task.online_runnable ? COLAB_NOTEBOOK_BASE + 'RBioBench_' + task.public_id + '.ipynb' : '',
   }));
   return { tasks: tasks };
 }
